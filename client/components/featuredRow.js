@@ -43,17 +43,6 @@ export default function FeatureRow({ id, title, description, restaurants }) {
         {restaurants.map((restaurant, index) => {
           return (
             <RestaurantCard
-              //   key={restaurant._id}
-              //   id={restaurant._id}
-              //   imgUrl={restaurant.image}
-              //   title={restaurant.name}
-              //   rating={restaurant.rating}
-              //   type={restaurant.type?.name}
-              //   address="123 main street"
-              //   description={restaurant.description}
-              //   dishes={restaurant.dishes}
-              //   lng={restaurant.lng}
-              //   lat={restaurant.lat}
               key={index}
               item={restaurant}
             />

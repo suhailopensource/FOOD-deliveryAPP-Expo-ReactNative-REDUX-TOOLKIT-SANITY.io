@@ -18,6 +18,7 @@ import { featured } from "../constants";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRestaurant } from "../slices/restaurantSlice";
 import { cartTotal, removeCartItem, selectCartItems } from "../slices/cartSlice";
+import { urlFor } from "../sanity";
 
 export default function BasketScreen() {
   const [groupedItems, setGroupedItems] = useState([])
@@ -31,15 +32,14 @@ export default function BasketScreen() {
   const deliveryFee = 2;
   useEffect(() => {
     const gItems = basketItems.reduce((group, item) => {
-      if (group[item.id]) {
-        group[item.id].push(item);
+      if (group[item._id]) {
+        group[item._id].push(item);
       } else {
-        group[item.id] = [item];
+        group[item._id] = [item];
       }
       return group;
     }, {})
     setGroupedItems(gItems);
-    // console.log('items: ',gItems);
 
   }, [basketItems])
 
@@ -97,7 +97,7 @@ export default function BasketScreen() {
               <Text style={{ color: themeColors.text }} className="font-bold">
                 {items.length} x{" "}
               </Text>
-              <Image className="h-14 w-14 rounded-full" source={dish.image} />
+              <Image className="h-14 w-14 rounded-full" source={{ uri: urlFor(dish.image).url() }} />
               <Text className="flex-1 font-bold text-gray-700">
                 {dish.name}
               </Text>
